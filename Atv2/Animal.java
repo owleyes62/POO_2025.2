@@ -1,22 +1,42 @@
 
 import java.util.ArrayList;
+abstract class Animal {
+    protected long id;
+    protected String name;
+    protected int age;
+    protected double weight;
+    protected ArrayList<String> abilities;
 
-public class Animal {
-    long id;
-    String name;
-    int age;
-    double weight;
-    ArrayList<String> abilities;
-
-    String sound() {
-        return "Some generic animal sound";
+    public Animal(long id, String name, int age, double weight) {
+        this.id = id;
+        this.name = name;
+        this.age = age;
+        this.weight = weight;
+        this.abilities = new ArrayList<>();
     }
 
-    String PerformAbility(String abi){
-        if(abilities.contains(abi)){
-            return name + " performs " + abi;
+    public long getId() {
+        return id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    // Método abstrato para som
+    public abstract String sound();
+
+    // Verificar habilidade
+    public String performAbility(String ability) {
+        if (abilities.contains(ability)) {
+            return name + " can " + ability;
         } else {
-            return name + " does not have the ability: " + abi;
+            return name + " can't " + ability;
         }
+    }
+
+    @Override
+    public String toString() {
+        return "ID: " + id + " | Nome: " + name + " | Idade: " + age + " | Peso: " + weight;
     }
 }
